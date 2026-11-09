@@ -1,0 +1,49 @@
+# Secrets and local env
+.env
+.env.local
+*.pem
+credentials.json
+token.json
+gmail_token.json
+client_secret*.json
+
+# Resume uploads (keep directory via .gitkeep)
+resume/*
+!resume/.gitkeep
+
+# Runtime data
+data/
+sessions/
+tailored/
+artifacts/
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Playwright
+playwright-report/
+test-results/
+.playwright/

@@ -1,0 +1,4 @@
+"""Scheduler cron defaults."""
+
+DAILY_PIPELINE_CRON_HOUR = 8
+DAILY_PIPELINE_CRON_MINUTE = 0

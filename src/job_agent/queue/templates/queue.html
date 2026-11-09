@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Job Agent — Approval Queue</title>
+  <link rel="stylesheet" href="/static/queue.css" />
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="brand">Job Agent</p>
+      <h1>Approval queue</h1>
+      <p class="lede">Review match score and tailored resume diff. Nothing submits until you approve.</p>
+    </div>
+    <p class="meta">Applies today: {{ applies_today }} / {{ max_daily_applies }}</p>
+  </header>
+
+  {% if not items %}
+  <section class="empty">
+    <h2>Queue is empty</h2>
+    <p>Run <code>job-agent discover</code> or <code>job-agent run-once</code> after uploading a resume to <code>resume/</code>.</p>
+  </section>
+  {% endif %}
+
+  <main class="list">
+    {% for item in items %}
+    <article class="item">
+      <header>
+        <h2>{{ item.title }}</h2>
+        <p class="company">{{ item.company }} · {{ item.portal }} · {{ item.location or "Location n/a" }}</p>
+        <p class="score">Match {{ '%.0f'|format((item.score or 0) * 100) }}% — {{ item.rationale }}</p>
+        {% if item.url %}<p><a href="{{ item.url }}" target="_blank" rel="noopener">Open posting</a>
+          · <a href="/applications/{{ item.app_id }}/pdf">Tailored PDF</a></p>{% endif %}
+        {% if item.pause_reason %}<p class="pause">Paused: {{ item.pause_reason }}</p>{% endif %}
+      </header>
+      <pre class="diff">{{ item.diff_text or "(no textual diff)" }}</pre>
+      <form class="actions" method="post" action="/applications/{{ item.app_id }}/approve">
+        <button type="submit" class="approve">Approve</button>
+      </form>
+      <form class="actions" method="post" action="/applications/{{ item.app_id }}/skip">
+        <input type="text" name="reason" placeholder="Skip reason (optional)" />
+        <button type="submit" class="skip">Skip</button>
+      </form>
+    </article>
+    {% endfor %}
+  </main>
+</body>
+</html>

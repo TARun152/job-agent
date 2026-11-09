@@ -1,0 +1,90 @@
+"""Resume parsing patterns and known skill vocabulary."""
+
+EMAIL_PATTERN = r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+"
+PHONE_PATTERN = r"(?:\+?\d{1,3}[-.\s]?)?(?:\(?\d{2,4}\)?[-.\s]?)?\d{3,4}[-.\s]?\d{4}"
+URL_PATTERN = r"https?://[^\s)]+"
+
+SECTION_HEADERS = {
+    "summary": {"summary", "profile", "about", "objective"},
+    "experience": {
+        "experience",
+        "work experience",
+        "professional experience",
+        "employment",
+    },
+    "education": {"education", "academics"},
+    "skills": {"skills", "technical skills", "technologies", "tech stack"},
+}
+
+TAILOR_STOPWORDS = frozenset(
+    {
+        "and",
+        "or",
+        "the",
+        "a",
+        "an",
+        "to",
+        "of",
+        "in",
+        "for",
+        "with",
+        "on",
+        "at",
+        "by",
+        "from",
+        "as",
+        "is",
+        "are",
+        "be",
+        "this",
+        "that",
+        "using",
+        "use",
+        "used",
+        "experience",
+        "preferred",
+        "strong",
+        "plus",
+    }
+)
+
+KNOWN_SKILL_TOKENS = (
+    "Python",
+    "Java",
+    "JavaScript",
+    "TypeScript",
+    "Go",
+    "SQL",
+    "PostgreSQL",
+    "MySQL",
+    "MongoDB",
+    "Redis",
+    "Kafka",
+    "AWS",
+    "GCP",
+    "Azure",
+    "Docker",
+    "Kubernetes",
+    "FastAPI",
+    "Django",
+    "Flask",
+    "Spring",
+    "RAG",
+    "LLM",
+    "NLP",
+    "LangChain",
+    "OpenAI",
+    "PyTorch",
+    "TensorFlow",
+    "scikit-learn",
+    "Pandas",
+    "NumPy",
+    "Spark",
+    "Airflow",
+    "REST",
+    "gRPC",
+    "GraphQL",
+    "CI/CD",
+    "Linux",
+    "Git",
+)
